@@ -1,5 +1,6 @@
 import smtplib as smt
 import getpass
+import random
 import time
 import sys
 import os
@@ -40,7 +41,6 @@ try:
 
     while i < count:
         i += 1
-
         server.send_message(msg)
         print("A message has been sent!")
         sys.stdout.flush()
