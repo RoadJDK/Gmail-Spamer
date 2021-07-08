@@ -13,11 +13,11 @@ dumpEmail = input("Enter your dump-email : ")
 password = getpass.getpass("Enter your password : ")
 victimEmail = input("Enter your victims-email : ")
 message = input("What message should be sent? : ")
-count = input("How many emails you want to send? : ")
+count = int(input("How many emails you want to send? : "))
 
 try:
     gmail_server = 'smtp.gmail.com'
-    port = 465
+    port = 587
     server = smt.SMTP(gmail_server,port)
     server.ehlo()
     if gmail_server == "smtp.gmail.com":
