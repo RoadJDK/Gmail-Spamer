@@ -3,6 +3,8 @@ import smtplib as smt
 import getpass
 import sys
 
+from email.message import EmailMessage
+
 os.system("clear || cls")
 
 print("GMAIL SPAMER")
@@ -12,6 +14,7 @@ print()
 dumpEmail = input("Enter your dump-email : ")
 password = getpass.getpass("Enter your password : ")
 victimEmail = input("Enter your victims-email : ")
+subject = input("Enter the subject : ")
 message = input("What message should be sent? : ")
 count = int(input("How many emails you want to send? : "))
 
@@ -25,10 +28,18 @@ try:
     server.login(dumpEmail,password)
     print("login successfull - start sending now...")
     print()
+
+    msg = EmailMessage()
+    msg['Subject'] = subject
+    msg['From'] = dumpEmail
+    msg['To'] = victimEmail
+    msg.set_content(message)
     i = 0
+
     while i < count:
         i += 1
-        server.sendmail(dumpEmail,victimEmail,message)
+
+        server.send_message(msg)
         print("A message has been sent!")
         sys.stdout.flush()
     server.quit
