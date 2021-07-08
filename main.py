@@ -1,7 +1,8 @@
-import os
 import smtplib as smt
 import getpass
+import time
 import sys
+import os
 
 from email.message import EmailMessage
 
@@ -17,6 +18,7 @@ victimEmail = input("Enter your victims-email : ")
 subject = input("Enter the subject : ")
 message = input("What message should be sent? : ")
 count = int(input("How many emails you want to send? : "))
+delay = float(input("Do you want to add a delay? (ms) : "))
 
 try:
     gmail_server = 'smtp.gmail.com'
@@ -42,6 +44,7 @@ try:
         server.send_message(msg)
         print("A message has been sent!")
         sys.stdout.flush()
+        time.sleep(delay / 1000)
     server.quit
     print()
     print("------------")
